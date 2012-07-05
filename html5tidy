@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+from bs4 import BeautifulSoup
+import sys
+
+# force the output local instead of defaulting to ascii
+# this fixes: UnicodeEncodeError: 'ascii' codec can't encode character
+import codecs
+import locale
+sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
+
+html = BeautifulSoup(open(sys.argv[1]), "html5lib")
+print html.prettify()
